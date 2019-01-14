@@ -12,10 +12,6 @@ def reducer(summary: Row, current: Row) : Row = {
 // 获取总数，返回一个Row
 val ret = studentDF.reduce(
     (summary, current) => {
-        printf(
-            "current = %d, summary = %d\n", 
-            current.getInt(0), summary.getInt(0)
-        )
         Row(current.getInt(0) + summary.getInt(0))
     }
 )
