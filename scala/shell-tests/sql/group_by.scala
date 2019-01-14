@@ -14,7 +14,7 @@ val result = studentDF.
     show()
 
 // 参考 https://spark.apache.org/docs/1.5.2/api/java/org/apache/spark/sql/GroupedData.html
-// 自己计算品均分
+// 自己计算平均分
 val result = studentDF.
     groupBy("type").
     agg(
