@@ -3,7 +3,8 @@ from __future__ import print_function
 import sys
 from pyspark.sql import SparkSession
 
-from calculator import Calculator
+from calculator import Calculator # uses in-house library
+import pystache # uses 3rd parth library
 
 def main(spark):
     calculator = Calculator()
@@ -15,6 +16,8 @@ def main(spark):
             calculator.add(1, 1)
         )
     )
+    rendered = pystache.render('Hi {{person}}!', {'person': 'Mom'})
+    print("rendered = {}".format(rendered))
     print("Done")
     print("==========================")
 

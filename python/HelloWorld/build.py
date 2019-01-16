@@ -12,7 +12,9 @@ def execute(cmd, *args):
     return exit_code
 
 def main():
-    base_dir = os.path.dirname(sys.argv[0])
+    base_dir = os.path.abspath(
+        os.path.dirname(sys.argv[0])
+    )
 
     execute(
         "rm -rf {}/build",
