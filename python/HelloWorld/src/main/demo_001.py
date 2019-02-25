@@ -21,11 +21,12 @@ def main(spark):
     print("Done")
     print("==========================")
 
-if __name__ == "__main__":
+def run():
     spark = SparkSession\
         .builder\
         .appName("Greet")\
         .getOrCreate()
-    main(spark)
-
-    spark.stop()
+    try:
+        main(spark)
+    finally:
+        spark.stop()

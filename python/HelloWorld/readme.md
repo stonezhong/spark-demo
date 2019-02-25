@@ -2,7 +2,9 @@
 This is a demo shows how to build a standalone python app for spark job
 
 # Build #
-run the build.py, you can run it in any directory. If you are asked for upgrading pip, create a venv and upgrade it and run it.
+run build
+`see the build in tools directory`
 
 # submit spark job #
-run submit.py
+run -e demo_001
+`see run in build tool directory`
