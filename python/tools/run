@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
+from __future__ import print_function
+import os
+import sys
+import argparse 
+import tempfile
+
+def execute(cmd, *args):
+    cmd_with_args = cmd.format(*args)
+    print("Executing: {}".format(cmd_with_args))
+    exit_code = os.system(cmd_with_args)
+    return exit_code
+
+def main():
+    parser = argparse.ArgumentParser(description='Run a spark job')
+    parser.add_argument(
+        "-b", "--base", type=str, 
+        required=False, default=".", help="base directory"
+    )
+    parser.add_argument(
+        "-e", "--entry", type=str, 
+        required=False,  default="main.py", help="entry location"
+    )
+    args = parser.parse_args()
+
+    # generate a temporary file
+    entry = args.entry
+    if entry.endswith(".py"):
+        entry = entry[:-3]
+
+    f = tempfile.NamedTemporaryFile(delete=False, suffix='.py')
+    print("import {}".format(entry), file=f)
+    print("{}.run()".format(entry), file=f)
+    f.close()
+
+    base_dir = os.path.abspath(args.base)
+    execute(
+        "spark-submit --py-files {0}/dist/libs.zip,{0}/dist/app.zip {1}",
+        base_dir, f.name
+    )
+
+# Usage run <filename>
+# Example: run app.py
+if __name__ == '__main__':
+    main()
