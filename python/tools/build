@@ -38,8 +38,5 @@ def main():
     execute("zip -r {}/dist/app.zip .", base_dir)
     os.chdir(base_dir)
 
-    # copy app.py to dist目录
-    execute("cp {}/src/main/app.py {}/dist/app.py", base_dir, base_dir)
-
 if __name__ == '__main__':
     main()
