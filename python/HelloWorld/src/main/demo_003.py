@@ -2,7 +2,8 @@ from __future__ import print_function
 
 import sys
 from pyspark.sql import SparkSession, SQLContext, Row
-from pyspark.sql.types import StructType, StructField, LongType, StringType, DateType
+from pyspark.sql.types import \
+    StructType, StructField, LongType, StringType, DateType
 from datetime import datetime, date
 import tempfile
 
